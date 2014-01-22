@@ -1,0 +1,18 @@
+{
+    "chmod": "0755",
+    "directories": ["GithubComment"],
+    "finder": [
+        {
+            "name": "*.php",
+            "exclude": ["Tests"],
+            "in": "vendor"
+        },
+        {
+            "name": "*.pem*",
+            "in": "vendor"
+        }
+    ],
+    "main": "bin/github-comment",
+    "output": "github-comment.phar",
+    "stub": true
+}
