@@ -166,7 +166,7 @@ class CommentCommand extends Command
 
     private function getGithubClient(InputInterface $input, OutputInterface $output)
     {
-        $credentials = $this->getHelperSet()->get('github')->getCrendentials($input, $output);
+        $credentials = $this->getHelperSet()->get('github')->getCredentials($input, $output);
 
         $guzzle = new Client('https://api.github.com/');
         // $guzzle->addSubscriber(new GuzzleConsolePlugin($this->output, $this->getHelperSet()->get('debug_formatter')));

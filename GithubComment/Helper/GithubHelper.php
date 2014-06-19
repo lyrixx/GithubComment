@@ -22,7 +22,7 @@ class GithubHelper extends Helper
         return 'github';
     }
 
-    public function getCrendentials(InputInterface $input, OutputInterface $output)
+    public function getCredentials(InputInterface $input, OutputInterface $output)
     {
         if (file_exists($file = getenv('HOME').'/.'.$this->name)) {
             return json_decode(file_get_contents($file), true);
