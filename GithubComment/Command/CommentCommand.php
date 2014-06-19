@@ -2,7 +2,6 @@
 
 namespace Lyrixx\GithubComment\Command;
 
-// use Symfony\Component\Console\GuzzleConsolePlugin;
 use Github\Client as Github;
 use Github\HttpClient\HttpClient;
 use Guzzle\Http\Client;
@@ -169,7 +168,6 @@ class CommentCommand extends Command
         $credentials = $this->getHelperSet()->get('github')->getCredentials($input, $output);
 
         $guzzle = new Client('https://api.github.com/');
-        // $guzzle->addSubscriber(new GuzzleConsolePlugin($this->output, $this->getHelperSet()->get('debug_formatter')));
         $github = new Github(new HttpClient(array(), $guzzle));
         $github->authenticate($credentials['token'], Github::AUTH_HTTP_TOKEN);
 
