@@ -4,6 +4,7 @@ namespace Lyrixx\GithubComment\Helper;
 
 use Github\Client as Github;
 use Github\Exception\RuntimeException;
+use Github\Exception\TwoFactorAuthenticationRequiredException;
 use Symfony\Component\Console\Helper\Helper;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -44,6 +45,7 @@ class GithubHelper extends Helper
     private function createToken(InputInterface $input, OutputInterface $output)
     {
         $dialog = $this->getHelperSet()->get('question');
+
         $username = $dialog->ask($input, $output, new Question('<info>Your Github username:</info> '));
         $question = new Question('<info>Your Github password:</info> ');
         $question->setHidden(true);
@@ -55,6 +57,17 @@ class GithubHelper extends Helper
             $token = $github->api('authorizations')->create(array('scopes' => array('repo'), 'note' => $this->name));
 
             return ['username' => $username, 'token' => $token['token']];
+        } catch (TwoFactorAuthenticationRequiredException $e) {
+            try {
+                $question = new Question('<info>The account has two-factor authentication enabled, please provide the code for this request:</info> ');
+                $code = $dialog->ask($input, $output, $question);
+
+                $token = $github->api('authorizations')->create(array('scopes' => array('repo'), 'note' => $this->name), $code);
+
+                return array('username' => $username, 'token' => $token['token']);
+            } catch (RuntimeException $e) {
+                return false;
+            }
         } catch (RuntimeException $e) {
             return false;
         }

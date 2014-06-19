@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "98e292b77b515b9a8486adef7111d57c",
+    "hash": "289f5760e2d21bc6d5e2cef24367fe55",
     "packages": [
         {
             "name": "guzzle/guzzle",
@@ -104,21 +104,21 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/KnpLabs/php-github-api.git",
-                "reference": "bdb8637455c03c886aa002e875a02feef312a6c6"
+                "reference": "785c9050dd02ee0548fc5ef1c68f7a83cfcffebe"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/KnpLabs/php-github-api/zipball/bdb8637455c03c886aa002e875a02feef312a6c6",
-                "reference": "bdb8637455c03c886aa002e875a02feef312a6c6",
+                "url": "https://api.github.com/repos/KnpLabs/php-github-api/zipball/785c9050dd02ee0548fc5ef1c68f7a83cfcffebe",
+                "reference": "785c9050dd02ee0548fc5ef1c68f7a83cfcffebe",
                 "shasum": ""
             },
             "require": {
                 "ext-curl": "*",
-                "guzzle/guzzle": ">=3.7",
+                "guzzle/guzzle": "~3.7",
                 "php": ">=5.3.2"
             },
             "require-dev": {
-                "phpunit/phpunit": ">=3.7"
+                "phpunit/phpunit": "~4.0"
             },
             "suggest": {
                 "knplabs/gaufrette": "Needed for optional Gaufrette cache"
@@ -157,7 +157,7 @@
                 "gist",
                 "github"
             ],
-            "time": "2014-06-10 07:15:28"
+            "time": "2014-06-19 16:14:41"
         },
         {
             "name": "symfony/console",
