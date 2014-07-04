@@ -4,6 +4,7 @@ namespace Lyrixx\GithubComment\Command;
 
 // use Symfony\Component\Console\GuzzleConsolePlugin;
 use Github\Client as Github;
+use Github\Exception\RuntimeException;
 use Github\HttpClient\HttpClient;
 use Guzzle\Http\Client;
 use Symfony\Component\Console\Command\Command;
@@ -80,6 +81,10 @@ class CommentCommand extends Command
 
         $repositoryInfo = $this->getRepositoryInfo($input, $output);
 
+        if ($output->isVerbose()) {
+            $output->writeln(sprintf('Repository info: %s', print_r($repositoryInfo, true)));
+        }
+
         if ($input->getOption('dry-run')) {
             $output->writeln('<info>Dry-run, aborting<info>');
 
@@ -87,7 +92,13 @@ class CommentCommand extends Command
         }
 
         foreach ($prs as $pr) {
-            $this->getGithubClient($input, $output)->api('issue')->comments()->create($repositoryInfo['organization'], $repositoryInfo['repository'], $pr, array('body' => $message));
+            try {
+                $this->getGithubClient($input, $output)->api('issue')->comments()->create($repositoryInfo['organization'], $repositoryInfo['repository'], $pr, array('body' => $message));
+            } catch (RuntimeException $e) {
+                $output->writeln(sprintf('<error>Impossible to comment the PR %s/%s:#%d, message: "%s"<error>', $repositoryInfo['organization'], $repositoryInfo['repository'], $pr, $e->getMessage()));
+
+                throw $e;
+            }
         }
 
         $output->writeln('<info>All PR has been commented<info>');
@@ -106,13 +117,13 @@ class CommentCommand extends Command
 
             $remotes = explode("\n", trim($process->getOutput()));
             if (!$remotes) {
-                throw new \RuntimeException('Impossible to guess remote information. use --organization and --repository instead.');
+                throw new \RuntimeException(sprintf('Impossible to guess remote information. use --organization and --repository instead. remotes: %s', print_r($remotes, true)));
             }
 
-            preg_match('{github.com[:/](?P<organization>[a-z0-9\.-_]+)/(?P<repository>[a-z0-9\.-_]+).git}i', $remotes[0], $matches);
+            preg_match('{github.com[:/](?P<organization>[a-z0-9\.-_]+)/(?P<repository>[a-z0-9\.-_]+)(.git)?}i', $remotes[0], $matches);
 
             if (!$matches) {
-                throw new \RuntimeException('Impossible to guess remote information. use --organization and --repository instead.');
+                throw new \RuntimeException('Impossible to guess remote information. use --organization and --repository instead (regex does no work).');
             }
 
             return $matches;
