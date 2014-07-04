@@ -4,20 +4,20 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "289f5760e2d21bc6d5e2cef24367fe55",
+    "hash": "fb5376ad0b31053b3d8ee7f90747be47",
     "packages": [
         {
             "name": "guzzle/guzzle",
-            "version": "v3.9.1",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/guzzle3.git",
-                "reference": "92d9934f2fca1da15178c91239576ae26e505e60"
+                "reference": "49104c61"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle3/zipball/92d9934f2fca1da15178c91239576ae26e505e60",
-                "reference": "92d9934f2fca1da15178c91239576ae26e505e60",
+                "url": "https://api.github.com/repos/guzzle/guzzle3/zipball/49104c619b663038e636a819718adce3b27ba6f2",
+                "reference": "49104c61",
                 "shasum": ""
             },
             "require": {
@@ -96,7 +96,7 @@
                 "rest",
                 "web service"
             ],
-            "time": "2014-05-07 17:04:22"
+            "time": "2014-06-04 19:49:37"
         },
         {
             "name": "knplabs/github-api",
@@ -104,12 +104,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/KnpLabs/php-github-api.git",
-                "reference": "785c9050dd02ee0548fc5ef1c68f7a83cfcffebe"
+                "reference": "6ee8ad85e4d4a82e8ab92ac76fd14671dbba5158"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/KnpLabs/php-github-api/zipball/785c9050dd02ee0548fc5ef1c68f7a83cfcffebe",
-                "reference": "785c9050dd02ee0548fc5ef1c68f7a83cfcffebe",
+                "url": "https://api.github.com/repos/KnpLabs/php-github-api/zipball/6ee8ad85e4d4a82e8ab92ac76fd14671dbba5158",
+                "reference": "6ee8ad85e4d4a82e8ab92ac76fd14671dbba5158",
                 "shasum": ""
             },
             "require": {
@@ -157,7 +157,7 @@
                 "gist",
                 "github"
             ],
-            "time": "2014-06-19 16:14:41"
+            "time": "2014-07-01 12:09:42"
         },
         {
             "name": "symfony/console",
@@ -166,12 +166,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Console.git",
-                "reference": "f41913cde27de7073e78d9a41c1299c0315dfe64"
+                "reference": "9a491e7983209bf320d40917291c03e856eee947"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Console/zipball/f41913cde27de7073e78d9a41c1299c0315dfe64",
-                "reference": "f41913cde27de7073e78d9a41c1299c0315dfe64",
+                "url": "https://api.github.com/repos/symfony/Console/zipball/9a491e7983209bf320d40917291c03e856eee947",
+                "reference": "9a491e7983209bf320d40917291c03e856eee947",
                 "shasum": ""
             },
             "require": {
@@ -216,7 +216,7 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "http://symfony.com",
-            "time": "2014-06-11 06:54:52"
+            "time": "2014-06-20 17:41:51"
         },
         {
             "name": "symfony/event-dispatcher",
@@ -331,12 +331,18 @@
 
     ],
     "aliases": [
-
+        {
+            "alias": "3.9@dev",
+            "alias_normalized": "dev-3.9@",
+            "version": "9999999-dev",
+            "package": "guzzle/guzzle"
+        }
     ],
     "minimum-stability": "stable",
     "stability-flags": {
-        "symfony/console": 20,
-        "knplabs/github-api": 20
+        "guzzle/guzzle": 20,
+        "knplabs/github-api": 20,
+        "symfony/console": 20
     },
     "platform": [
 
