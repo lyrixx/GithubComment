@@ -11,7 +11,7 @@ class Application extends BaseApplication
 {
     public function __construct()
     {
-        parent::__construct('GithubComment', '0.0.2');
+        parent::__construct('GithubComment', '0.0.3');
 
         $this->add(new Commands\CommentCommand());
     }
