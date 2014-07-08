@@ -126,6 +126,8 @@ class CommentCommand extends Command
                 throw new \RuntimeException('Impossible to guess remote information. use --organization and --repository instead (regex does no work).');
             }
 
+            $matches['repository'] = preg_replace('/(.git)$/', '', $matches['repository']);
+
             return $matches;
         }
 
