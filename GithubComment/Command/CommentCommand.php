@@ -81,7 +81,7 @@ class CommentCommand extends Command
 
         $repositoryInfo = $this->getRepositoryInfo($input, $output);
 
-        if ($output->isVerbose()) {
+        if ($output->isDebug()) {
             $output->writeln(sprintf('Repository info: %s', print_r($repositoryInfo, true)));
         }
 
