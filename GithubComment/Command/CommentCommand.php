@@ -120,7 +120,7 @@ class CommentCommand extends Command
                 throw new \RuntimeException(sprintf('Impossible to guess remote information. use --organization and --repository instead. remotes: %s', print_r($remotes, true)));
             }
 
-            preg_match('{github.com[:/](?P<organization>[a-z0-9\.-_]+)/(?P<repository>[a-z0-9\.-_]+)(\.git)?}i', $remotes[0], $matches);
+            preg_match('{github\.com[:/](?P<organization>[a-z0-9\.-_]+)/(?P<repository>[a-z0-9\.-_]+)(\.git)?}i', $remotes[0], $matches);
 
             if (!$matches) {
                 throw new \RuntimeException('Impossible to guess remote information. use --organization and --repository instead (regex does no work).');
