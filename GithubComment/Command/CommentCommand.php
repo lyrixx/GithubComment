@@ -65,6 +65,7 @@ class CommentCommand extends Command
         }
 
         $message = $input->getArgument('message');
+        $message = str_replace('\n', "\n", $message);
 
         $dialog = $this->getHelperSet()->get('question');
         if (!$input->getOption('no-confirmation') && !$dialog->ask($input, $output, new ConfirmationQuestion(sprintf('<info>Continue with message: "%s": [Y/n]</info> ', $message), true))) {
