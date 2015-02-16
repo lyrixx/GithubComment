@@ -11,7 +11,7 @@ new comment on each deployed PR.
 How?
 ----
 
-Just grab the phar_. and start using it.
+Just grab the latest phar_. and start using it.
 
 Usage?
 ------
@@ -36,4 +36,4 @@ confirmation`` option to skip confirmation.
 
     php github-comment.phar "This PR is deployed to Staging" HEAD~10 --no-confirmation
 
-.. _phar: https://github.com/lyrixx/GithubComment/releases/download/v0.0.1/github-comment.phar
+.. _phar: https://github.com/lyrixx/GithubComment/releases
