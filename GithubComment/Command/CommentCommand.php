@@ -40,23 +40,18 @@ class CommentCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $excludedPaths = array_map(function ($path) {
-            return ':!' . $path;
+            return ':!'.$path;
         }, $input->getOption('exclude-path'));
 
-        $cmd = $this->createGitCommand(
-            $input,
-            array_merge(
-                array(
-                    'log',
-                    '--format=%s',
-                    '--merges',
-                    sprintf('%s..%s', $input->getArgument('previous-revision'), $input->getArgument('new-revision')),
-                    '--',
-                    '.',
-                ),
-                $excludedPaths
-            )
-        );
+        $defaultArgs = [
+            'log',
+            '--format=%s',
+            '--merges',
+            sprintf('%s..%s', $input->getArgument('previous-revision'), $input->getArgument('new-revision')),
+            '--',
+            '.',
+        ];
+        $cmd = $this->createGitCommand($input, array_merge($defaultArgs, $excludedPaths));
 
         $process = $this->runProcess($output, $cmd);
 
@@ -185,7 +180,6 @@ class CommentCommand extends Command
             }
 
             throw new \RuntimeException('Something went wrong with git.');
-
         }
 
         return $process;
