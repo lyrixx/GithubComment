@@ -11,8 +11,8 @@
     "require": {
         "guzzle/guzzle": "~3.9.2",
         "knplabs/github-api": "~1.4.0",
-        "symfony/console": "~2.6",
-        "symfony/process": "~2.3"
+        "symfony/console": "~3.0",
+        "symfony/process": "~3.0"
     },
     "autoload": {
         "psr-4": { "Lyrixx\\GithubComment\\": "GithubComment" }
