@@ -32,18 +32,31 @@ class CommentCommand extends Command
                 new InputOption('repository', null, InputOption::VALUE_REQUIRED, 'repository name <comment>example: GithubComment</comment>.'),
                 new InputOption('work-tree', null, InputOption::VALUE_REQUIRED, 'git option'),
                 new InputOption('git-dir', null, InputOption::VALUE_REQUIRED, 'git option.'),
+                new InputOption('exclude-path', null, InputOption::VALUE_OPTIONAL | InputOption::VALUE_IS_ARRAY, 'Specify a path to exclude.'),
             ))
         ;
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $cmd = $this->createGitCommand($input, array(
-            'log',
-            '--format=%s',
-            '--merges',
-            sprintf('%s..%s', $input->getArgument('previous-revision'), $input->getArgument('new-revision'))
-        ));
+        $excludedPaths = array_map(function ($path) {
+            return ':!' . $path;
+        }, $input->getOption('exclude-path'));
+
+        $cmd = $this->createGitCommand(
+            $input,
+            array_merge(
+                array(
+                    'log',
+                    '--format=%s',
+                    '--merges',
+                    sprintf('%s..%s', $input->getArgument('previous-revision'), $input->getArgument('new-revision')),
+                    '--',
+                    '.',
+                ),
+                $excludedPaths
+            )
+        );
 
         $process = $this->runProcess($output, $cmd);
 
