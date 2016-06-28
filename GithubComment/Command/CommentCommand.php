@@ -54,7 +54,7 @@ class CommentCommand extends Command
         });
 
         if (!$prs) {
-            $output->writeln('There is not merged PR in this commit range.');
+            $output->writeln('There is no merged PR in this commit range.');
 
             return 0;
         }
