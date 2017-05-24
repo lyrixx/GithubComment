@@ -38,6 +38,9 @@ class CommentCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        // First initialize GH client to set the token if no already done
+        $ghClient = $this->getGithubClient($input, $output);
+
         $cmd = $this->createGitCommand($input, array(
             'log',
             '--format=%s',
@@ -94,7 +97,7 @@ class CommentCommand extends Command
 
         foreach ($prs as $pr) {
             try {
-                $this->getGithubClient($input, $output)->api('issue')->comments()->create($repositoryInfo['organization'], $repositoryInfo['repository'], $pr, array('body' => $message));
+                $ghClient->api('issue')->comments()->create($repositoryInfo['organization'], $repositoryInfo['repository'], $pr, array('body' => $message));
             } catch (RuntimeException $e) {
                 $output->writeln(sprintf('<error>Impossible to comment the PR %s/%s:#%d, message: "%s"<error>', $repositoryInfo['organization'], $repositoryInfo['repository'], $pr, $e->getMessage()));
 
