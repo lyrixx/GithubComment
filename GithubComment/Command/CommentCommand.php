@@ -171,8 +171,9 @@ class CommentCommand extends Command
                 $output->writeln('<comment>Rerun the command with "-vvv" option to get more information.</comment>');
             }
 
-            throw new \RuntimeException('Something went wrong with git.');
+            $message = explode("\n", $process->getErrorOutput(), 2);
 
+            throw new \RuntimeException(sprintf('Something went wrong with git: "%s"', $message[0]));
         }
 
         return $process;
